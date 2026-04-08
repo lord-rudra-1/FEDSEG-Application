@@ -10,6 +10,10 @@ The app performs chest X-ray region-of-interest segmentation using a ResNet-UNet
 - Confidence analytics (histograms, confidence bands, 3D volume rendering)
 - Export artifacts: mask PNG, overlay PNG, and attributes CSV
 - Health-check endpoint for backend availability
+- Safer API contract with request validation and structured responses
+- Compressed mask transport (`PNG` encoded as base64) to reduce payload size
+- Modularized frontend utilities for rendering, image processing, and API access
+- Basic automated tests for backend and frontend helper logic
 
 ## Project Structure
 
@@ -17,12 +21,21 @@ The app performs chest X-ray region-of-interest segmentation using a ResNet-UNet
 FEDSEG-APP/
   backend/
     api.py                 # FastAPI application and inference endpoint
+    config.py              # Environment-driven runtime settings
+    schemas.py             # Pydantic response models
   frontend/
     app.py                 # Streamlit user interface
+    api_client.py          # HTTP client and payload decoding
+    image_utils.py         # Image processing helpers
+    styles.py              # CSS theme injection
+    ui.py                  # UI rendering helpers
   model/
     model.py               # ResNet-UNet model definition
     infer.py               # Model loading and prediction pipeline
     fedseg_model.pt        # Trained model checkpoint (required, not included by default)
+  tests/
+    test_api.py            # API and payload contract tests
+    test_frontend_utils.py # Frontend helper tests
   utils/
     __init__.py
   requirements.txt
@@ -37,6 +50,7 @@ FEDSEG-APP/
 - `OpenCV`
 - `Plotly`
 - `NumPy`, `Pandas`, `requests`
+- `pytest`, `httpx`, `pydantic`
 
 ## Prerequisites
 
@@ -119,14 +133,15 @@ Runs segmentation on an uploaded image.
 
 ```json
 {
-  "mask": [[0.0, 0.1, 0.8], [0.2, 0.6, 0.9]],
   "image_height": 1024,
   "image_width": 1024,
   "inference_time_ms": 42.13,
   "mask_mean": 0.137,
   "mask_std": 0.223,
   "mask_min": 0.0,
-  "mask_max": 0.998
+  "mask_max": 0.998,
+  "mask_png_base64": "<base64-encoded-png>",
+  "mask_encoding": "png_base64"
 }
 ```
 
@@ -136,6 +151,13 @@ Frontend supports overriding backend URL through:
 
 - Environment variable: `FEDSEG_API_URL`
 - Sidebar input: API URL field
+
+Backend supports additional environment variables:
+
+- `FEDSEG_MODEL_PATH`
+- `FEDSEG_INFERENCE_IMAGE_SIZE`
+- `FEDSEG_MAX_UPLOAD_SIZE_BYTES`
+- `FEDSEG_REQUEST_TIMEOUT_SECONDS`
 
 Default backend URL is `http://localhost:8000`.
 
@@ -150,6 +172,9 @@ Default backend URL is `http://localhost:8000`.
 - **Image decode error**  
   Upload a valid PNG/JPEG image file.
 
+- **Large uploads rejected**  
+  Increase `FEDSEG_MAX_UPLOAD_SIZE_BYTES` if you intentionally need larger input files.
+
 - **Slow inference**  
   Verify GPU availability and correct PyTorch/CUDA installation.
 
@@ -158,6 +183,14 @@ Default backend URL is `http://localhost:8000`.
 - Demo/research implementation only
 - Not validated for clinical workflows
 - No authentication/rate-limiting layer in API
+
+## Testing
+
+Run the lightweight regression suite from the project root:
+
+```powershell
+pytest
+```
 
 ## Disclaimer
 

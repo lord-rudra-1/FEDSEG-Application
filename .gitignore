@@ -69,9 +69,6 @@ model/*.pth
 
 uploads/
 outputs/
-*.png
-*.jpg
-*.jpeg
 
 # ⚠️ If you NEED sample images, comment above lines
 
@@ -83,9 +80,7 @@ outputs/
 
 data/
 datasets/
-*.csv
 *.tsv
-*.json
 
 # =========================
 
