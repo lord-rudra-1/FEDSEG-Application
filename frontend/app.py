@@ -23,16 +23,16 @@ def inject_styles():
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
     :root {
-        --bg-0: #f6f8fc;
-        --bg-1: #eef2ff;
-        --bg-2: #e9f0ff;
+        --bg-0: #f5f8fc;
+        --bg-1: #edf3fb;
+        --bg-2: #e8f0f8;
         --text-primary: #0f172a;
         --text-secondary: #475569;
-        --card-bg: rgba(255, 255, 255, 0.68);
-        --card-border: rgba(148, 163, 184, 0.26);
-        --primary: #4f46e5;
-        --primary-soft: #6366f1;
-        --accent: #06b6d4;
+        --card-bg: rgba(255, 255, 255, 0.72);
+        --card-border: rgba(148, 163, 184, 0.22);
+        --primary: #1e40af;
+        --primary-soft: #2563eb;
+        --accent: #0ea5e9;
         --success: #10b981;
         --danger: #ef4444;
     }
@@ -41,8 +41,8 @@ def inject_styles():
         font-family: 'Inter', sans-serif;
         color: var(--text-primary);
         background:
-            radial-gradient(800px 350px at 10% 0%, rgba(79, 70, 229, 0.14), transparent 60%),
-            radial-gradient(700px 300px at 90% 0%, rgba(6, 182, 212, 0.12), transparent 60%),
+            radial-gradient(860px 370px at 8% 0%, rgba(30, 64, 175, 0.14), transparent 60%),
+            radial-gradient(760px 320px at 92% 0%, rgba(14, 165, 233, 0.12), transparent 60%),
             linear-gradient(165deg, var(--bg-0) 0%, var(--bg-1) 48%, var(--bg-2) 100%);
     }
 
@@ -155,13 +155,13 @@ def inject_styles():
         border-radius: 14px;
         background: linear-gradient(170deg, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.55) 100%);
         border: 1px solid rgba(148, 163, 184, 0.24);
-        box-shadow: 0 6px 18px rgba(79, 70, 229, 0.10);
+        box-shadow: 0 6px 18px rgba(30, 64, 175, 0.09);
         transition: transform 150ms ease, box-shadow 150ms ease;
     }
 
     .metric-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 24px rgba(79, 70, 229, 0.18);
+        box-shadow: 0 12px 24px rgba(30, 64, 175, 0.16);
     }
 
     .metric-label {
@@ -182,11 +182,11 @@ def inject_styles():
     }
 
     .upload-hint {
-        border: 1px dashed rgba(79, 70, 229, 0.35);
-        background: rgba(99, 102, 241, 0.06);
+        border: 1px dashed rgba(37, 99, 235, 0.32);
+        background: rgba(14, 165, 233, 0.08);
         border-radius: 14px;
         padding: 0.85rem 0.95rem;
-        color: #4338ca;
+        color: #0f4c81;
         font-size: 0.9rem;
         margin-bottom: 0.75rem;
     }
@@ -238,8 +238,8 @@ def inject_styles():
 
     .stButton > button, .stDownloadButton > button {
         border-radius: 10px !important;
-        border: 1px solid rgba(79, 70, 229, 0.25) !important;
-        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+        border: 1px solid rgba(30, 64, 175, 0.24) !important;
+        background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%) !important;
         color: #ffffff !important;
         font-weight: 600 !important;
         transition: all 160ms ease !important;
@@ -247,11 +247,11 @@ def inject_styles():
 
     .stButton > button:hover, .stDownloadButton > button:hover {
         transform: translateY(-1px);
-        box-shadow: 0 8px 18px rgba(79, 70, 229, 0.34);
+        box-shadow: 0 8px 18px rgba(30, 64, 175, 0.30);
     }
 
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(238,242,255,0.95));
+        background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(237,243,251,0.96));
         border-right: 1px solid rgba(148, 163, 184, 0.24);
     }
     [data-testid="stSidebar"] .block-container {
@@ -278,7 +278,7 @@ def inject_styles():
         color: #475569;
     }
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
         color: white;
     }
 </style>
@@ -386,7 +386,7 @@ def mask_to_rgb(mask, cmap_name):
 
 def make_overlay(original_rgb, mask_resized, threshold, alpha=0.45, tint=None):
     overlay = original_rgb.astype(np.float32).copy()
-    tint = np.array([124, 58, 237], dtype=np.float32) if tint is None else np.array(tint, dtype=np.float32)
+    tint = np.array([14, 116, 216], dtype=np.float32) if tint is None else np.array(tint, dtype=np.float32)
     foreground = mask_resized > threshold
     for c in range(3):
         overlay[:, :, c] = np.where(
@@ -576,8 +576,8 @@ total_pixels = int(binary.size)
 
 mask_rgb = mask_to_rgb(mask_resized, colormap)
 tone_map = {
-    "Violet": [124, 58, 237],
-    "Cyan": [6, 182, 212],
+    "Violet": [79, 70, 229],
+    "Cyan": [14, 165, 233],
     "Emerald": [16, 185, 129],
     "Amber": [245, 158, 11],
 }
@@ -724,7 +724,7 @@ with tab_analytics:
                 go.Bar(
                     x=(bin_edges[:-1] + bin_edges[1:]) / 2,
                     y=hist_vals,
-                    marker_color="#4f46e5",
+                    marker_color="#1e40af",
                     opacity=0.88,
                 )
             ]
@@ -732,7 +732,7 @@ with tab_analytics:
         fig_hist.add_vline(
             x=threshold,
             line_dash="dash",
-            line_color="#06b6d4",
+            line_color="#0ea5e9",
             annotation_text="Threshold",
             annotation_position="top",
         )
@@ -757,7 +757,7 @@ with tab_analytics:
                 go.Bar(
                     x=labels,
                     y=counts,
-                    marker_color=["#c7d2fe", "#a5b4fc", "#818cf8", "#4f46e5"],
+                    marker_color=["#dbeafe", "#93c5fd", "#3b82f6", "#1e40af"],
                     opacity=0.92,
                 )
             ]
@@ -792,9 +792,9 @@ with tab_analytics:
                 opacity=0.12,
                 surface_count=18,
                 colorscale=[
-                    [0.0, "rgba(79,70,229,0.00)"],
-                    [0.5, "rgba(79,70,229,0.45)"],
-                    [1.0, "rgba(6,182,212,0.95)"],
+                    [0.0, "rgba(30,64,175,0.00)"],
+                    [0.5, "rgba(30,64,175,0.45)"],
+                    [1.0, "rgba(14,165,233,0.95)"],
                 ],
             )
         )
