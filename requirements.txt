@@ -1,0 +1,12 @@
+streamlit
+fastapi
+uvicorn
+opencv-python
+numpy
+torch
+torchvision
+segmentation-models-pytorch
+plotly
+python-multipart
+requests
+pandas

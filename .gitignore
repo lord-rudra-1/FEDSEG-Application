@@ -1,0 +1,151 @@
+# =========================
+
+# 🔒 Python cache / compiled
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# =========================
+
+# 🧪 Virtual environments
+
+# =========================
+
+venv/
+.env/
+env/
+.venv/
+
+# =========================
+
+# 📦 Build / packaging
+
+# =========================
+
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+
+# 🧾 Logs / temp
+
+# =========================
+
+*.log
+*.tmp
+*.temp
+*.swp
+
+# =========================
+
+# 🔐 Environment variables
+
+# =========================
+
+.env
+.env.*
+
+# =========================
+
+# 🧠 ML models (IMPORTANT)
+
+# =========================
+
+model/*.pt
+model/*.pth
+*.pt
+*.pth
+
+# =========================
+
+# 🖼️ Uploaded / generated images
+
+# =========================
+
+uploads/
+outputs/
+*.png
+*.jpg
+*.jpeg
+
+# ⚠️ If you NEED sample images, comment above lines
+
+# =========================
+
+# 📊 Data files
+
+# =========================
+
+data/
+datasets/
+*.csv
+*.tsv
+*.json
+
+# =========================
+
+# 🧰 IDE / Editor
+
+# =========================
+
+.vscode/
+.idea/
+*.code-workspace
+
+# =========================
+
+# 🖥️ OS files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+
+# 📡 Streamlit
+
+# =========================
+
+.streamlit/secrets.toml
+
+# =========================
+
+# ⚡ Jupyter notebooks
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# 🔥 FastAPI / server temp
+
+# =========================
+
+*.db
+*.sqlite3
+
+# =========================
+
+# 🧪 Testing / coverage
+
+# =========================
+
+.coverage
+htmlcov/
+.pytest_cache/
+
+# =========================
+
+# 🚀 Misc
+
+# =========================
+
+*.bak
+*.old
