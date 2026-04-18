@@ -4,7 +4,8 @@ Federated medical image segmentation demo built with a `FastAPI` backend and a `
 The app performs chest X-ray region-of-interest segmentation using a ResNet-UNet style model and provides visual overlays, confidence analytics, and exportable outputs.
 
 video:
-[pahse 1](https://drive.google.com/file/d/1dx9zQfbL_vOC-QP7REJ_D4uFFRxTDCMW/view?usp=sharing)  
+
+[phase 1](https://drive.google.com/file/d/1dx9zQfbL_vOC-QP7REJ_D4uFFRxTDCMW/view?usp=sharing)  
 [phase 2](https://drive.google.com/file/d/1SePiTmjyjUHWVxmDZj02mbOMlfp3YjWy/view?usp=sharing)  
 
 
