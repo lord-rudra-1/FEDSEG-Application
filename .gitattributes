@@ -1,3 +1,4 @@
 *.pt filter=lfs diff=lfs merge=lfs -text
 *.pth filter=lfs diff=lfs merge=lfs -text
+start.sh text eol=lf
 *.pdf filter=lfs diff=lfs merge=lfs -text
