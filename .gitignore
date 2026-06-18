@@ -57,8 +57,10 @@ dist/
 # =========================
 
 model/*.pt
+!model/fedseg_model.pt
 model/*.pth
 *.pt
+!model/fedseg_model.pt
 *.pth
 
 # =========================

@@ -1,3 +1,15 @@
+---
+title: FEDSEG Medical Segmentation
+emoji: 🩺
+colorFrom: purple
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+short_description: Federated chest X-ray segmentation with ResNet-UNet
+---
+
 # FEDSEG-APP
 
 Federated medical image segmentation demo built with a `FastAPI` backend and a `Streamlit` frontend.  
@@ -197,6 +209,15 @@ Run the lightweight regression suite from the project root:
 ```powershell
 pytest
 ```
+
+## Hugging Face Spaces
+
+This repository is configured for deployment as a [Hugging Face Space](https://huggingface.co/docs/hub/spaces) using Docker.
+
+The Space runs the FastAPI inference service and Streamlit dashboard together via `start.sh`.  
+Set `FEDSEG_API_URL` to `http://127.0.0.1:8000` inside the container (already configured in `Dockerfile`).
+
+**Live demo:** after deployment, open your Space URL, upload a chest X-ray PNG/JPEG, and run segmentation.
 
 ## Disclaimer
 
