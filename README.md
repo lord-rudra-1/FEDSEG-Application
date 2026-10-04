@@ -12,6 +12,9 @@ short_description: Federated chest X-ray segmentation with ResNet-UNet
 
 # FEDSEG-APP
 
+**Live Demo:** [https://huggingface.co/spaces/codehashira23/FEDSEG-APP](https://huggingface.co/spaces/codehashira23/FEDSEG-APP)
+
+
 Federated medical image segmentation demo built with a `FastAPI` backend and a `Streamlit` frontend.  
 The app performs chest X-ray region-of-interest segmentation using a ResNet-UNet style model and provides visual overlays, confidence analytics, and exportable outputs.
 
